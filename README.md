@@ -1,26 +1,19 @@
-Boxer
-========
+boxer_description
+====================
 
-This repository contains the description, messages, and basic navigation packages for Boxer 2.4.
+This package contains the URDF files and STLs that make up the Boxer 2.4's description.
 
-NOTE: Boxer 2.4 is _not_ compatible with the older Boxer that ran on ROS Kinetic and earlier.  Older Boxer robots
-are not supported past ROS Kinetic, and will not work with this repository.
+Note that Boxer 2.4's description can be customized using the following environment variables:
 
-Boxer 2.4 uses an unmodified Otto 100 base, running a customized version of ROS2.  In order to provide compatibility
-with ROS Noetic, we use the `ros1_bridge` package running under ROS2 Foxy to provide the necessary translation between
-the ROS1 and ROS2 topics.
+| Variable             | Default Value | Description                                                              |
+|----------------------|---------------|--------------------------------------------------------------------------|
+| `BOXER_URDF_EXTRAS`  | `empty.urdf`  | Used to add additional links and joints to the URDF                      |
+| `BOXER_PC`           | `1`           | Set to `0` to remove the backpack PC from the URDF                       |
+| `BOXER_PC_MODEL`     | `evs-2000`    | Customize the model of backpack PC.  Requires `BOXER_PC` to be `1`       |
+| `BOXER_PC_XYZ`       | `0 0 0`       | Customize the position of backpack PC.  Requires `BOXER_PC` to be `1`    |
+| `BOXER_PC_RPY`       | `0 0 0`       | Customize the orientation of backpack PC.  Requires `BOXER_PC` to be `1` |
 
-
-Packages
-----------
-
-This repository contains 4 ROS packages for use with Clearpath's Boxer 2.4, running ROS Noetic:
-
-- `boxer_description` -- the Boxer's URDF and associated STL files
-- `boxer_msgs` -- message definitions used by various Boxer packages
-- `boxer_control` -- configuration and launch files for Boxer's control nodes (both real & simulation)
-- `boxer_navigation` -- odometry, amcl, and gmapping demos
-
-![Boxer 2.4 URDF](docs/boxer-urdf.png "Boxer 2.4 URDF")
-
-For description customization, please see the [boxer_description](boxer_description/README.md)'s documentation.
+Supported `BOXER_PC_MODEL` values:
+- `evs-2000` -- the Vecow EVS-2000 series industrial PC with GPU
+- `ecx-2000` -- the Vecow ECX-2000 series industrial PC
+- `mini-itx` -- generic mini-ITX form-factor PC with standard enclosure
